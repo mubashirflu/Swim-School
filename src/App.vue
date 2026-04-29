@@ -4,6 +4,8 @@ import Hero from './components/Hero.vue';
 import Home_Section from './components/Home_Section.vue';
 import Home_Sectiontwo from './components/Home_Sectiontwo.vue';
 import Home_Section3 from './components/Home_Section3.vue';
+import Home_sectionfour from './components/Home_sectionfour.vue';
+import End from './components/End.vue';
 </script>
 
 <template>
@@ -13,6 +15,8 @@ import Home_Section3 from './components/Home_Section3.vue';
      <Home_Section/>
      <Home_Sectiontwo/>
      <Home_Section3/>
+     <Home_sectionfour/>
+     <End/>
   </main>
 </template>
 
