@@ -1,10 +1,12 @@
 <template>
   <section class="imagine-section">
     <div class="container">
+
       <!-- Heading -->
       <h2 class="main-heading">
         Imagine Walking Into the<br> Water Calm and Confident
       </h2>
+
       <p class="sub-text">
         You’re on vacation. Your friends run toward the pool or ocean and this time, you don’t stay behind.<br>
         This isn’t just swim lessons — it’s self-trust, confidence, and freedom in the water.
@@ -12,6 +14,7 @@
 
       <!-- Slider -->
       <div class="slider-wrapper">
+
         <div class="slider-container">
           <div 
             class="slider-track" 
@@ -29,20 +32,22 @@
           </div>
         </div>
 
-        <!-- Arrows + Button Row -->
+        <!-- Controls -->
         <div class="controls-row">
-          <!-- Left Side: Arrows -->
+
           <div class="slider-controls">
-            <button class="nav-btn prev" @click="prevSlide">←</button>
-            <button class="nav-btn next" @click="nextSlide">→</button>
+            <button class="nav-btn" @click="prevSlide">←</button>
+            <button class="nav-btn" @click="nextSlide">→</button>
           </div>
 
-          <!-- Right Side: Start Your Journey Button -->
           <button class="journey-btn" @click="startJourney">
             Start Your Journey
           </button>
+
         </div>
+
       </div>
+
     </div>
   </section>
 </template>
@@ -70,7 +75,9 @@ export default {
 
   computed: {
     slideWidth() {
-      return this.isMobile ? 100 : 25
+      if (this.isMobile) return 100
+      if (window.innerWidth <= 1024) return 50
+      return 25
     }
   },
 
@@ -79,33 +86,33 @@ export default {
       this.currentIndex = (this.currentIndex + 1) % this.slides.length
     },
     prevSlide() {
-      this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length
-    },
-    goToSlide(index) {
-      this.currentIndex = index
+      this.currentIndex =
+        (this.currentIndex - 1 + this.slides.length) % this.slides.length
     },
     startJourney() {
       alert('Starting your swimming journey!')
     },
-    checkMobile() {
-      this.isMobile = window.innerWidth < 769
+    checkScreen() {
+      this.isMobile = window.innerWidth <= 768
     }
   },
 
   mounted() {
-    this.checkMobile()
-    window.addEventListener('resize', this.checkMobile)
+    this.checkScreen()
+    window.addEventListener('resize', this.checkScreen)
   },
 
   beforeUnmount() {
-    window.removeEventListener('resize', this.checkMobile)
+    window.removeEventListener('resize', this.checkScreen)
   }
 }
 </script>
 
 <style scoped>
+
+/* ================= BASE ================= */
 .imagine-section {
-  padding: 50px 20px 50px;
+  padding: 50px 20px;
   background: white;
   text-align: center;
 }
@@ -115,30 +122,29 @@ export default {
   margin: 0 auto;
 }
 
+/* ================= HEADING ================= */
 .main-heading {
   font-size: 44px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   color: #1F4E5F;
   margin-bottom: 16px;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .sub-text {
-  font-size: 16.5px;
+  font-size: 16px;
   font-family: 'DM Sans', sans-serif;
   color: #555;
   max-width: 650px;
-  margin: 0 auto 60px;
-  text-align: center;
+  margin: 0 auto 50px;
   line-height: 1.6;
 }
 
-/* ============= Slider ============= */
+/* ================= SLIDER ================= */
 .slider-wrapper {
   max-width: 1200px;
-  margin: 0 auto 40px;
-  position: relative;
+  margin: 0 auto;
 }
 
 .slider-container {
@@ -147,146 +153,135 @@ export default {
 
 .slider-track {
   display: flex;
-  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 0.7s ease;
 }
 
 .slide {
   min-width: 25%;
-  padding: 0 12px;
-  box-sizing: border-box;
-  transition: all 0.6s ease;
-  opacity: 0.75;
-  transform: scale(0.93) rotateY(10deg);
+  padding: 0 10px;
+  transition: 0.5s ease;
+  opacity: 0.7;
+  transform: scale(0.95);
 }
 
 .slide.active {
   opacity: 1;
-  transform: scale(1) rotateY(0deg);
+  transform: scale(1);
 }
 
 .slide img {
   width: 100%;
   height: 280px;
   object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s ease;
-}
-
-.slide:hover img {
-  transform: scale(1.05);
+  border-radius: 16px;
 }
 
 .slide-caption {
-  margin-top: 16px;
-  font-size: 16.5px;
-  font-family: 'DM Sans', sans-serif;
-  color: #333333;
+  margin-top: 12px;
+  font-size: 16px;
   font-weight: 600;
-  text-align: center;
+  color: #333;
 }
 
-/* ================== Controls Row (Arrows + Button) ================== */
+/* ================= CONTROLS ================= */
 .controls-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
-  flex-wrap: wrap;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .slider-controls {
   display: flex;
-  gap: 16px;
-  justify-content: flex-start;
+  gap: 12px;
 }
 
 .nav-btn {
-  width: 45px;
-  height: 45px;
-  background: white;
-  color: #333333;
-  border: 2px solid #333333;
-  font-size: 28px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  border: 2px solid #333;
+  background: white;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 22px;
 }
 
 .nav-btn:hover {
-  background: #333333;
+  background: #333;
   color: white;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.nav-btn:active {
-  transform: scale(0.95);
-}
-
-/* Journey Button */
+/* ✅ FIXED BUTTON */
 .journey-btn {
   background: #1F4E5F;
   color: white;
   border: none;
-  padding: 16px 24px 16px 24px;
-  font-size: 16.5px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight:500px;
+  padding: 12px 18px;
+  font-size: 15px;
   border-radius: 38px;
   cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 0 6px 20px rgba(30, 64, 175, 0.25);
   white-space: nowrap;
+  width: auto;
+  display: inline-block;
+  transition: 0.3s;
 }
 
 .journey-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.35);
+  transform: translateY(-3px);
 }
-/* Responsive */
-@media (max-width: 768px) {
-  .slider-wrapper {
-    max-width: 100%;
-  }
 
-  .controls-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
+/* ================= RESPONSIVE ================= */
 
-  .slider-controls {
-    margin: 0;
-  }
-
+/* Tablet */
+@media (max-width: 1024px) {
   .slide {
-    min-width: 100%;
-    padding: 0 8px;
-    transform: scale(0.96);
-  }
-
-  .slide img {
-    height: 250px;
+    min-width: 50%;
   }
 
   .main-heading {
     font-size: 36px;
   }
+}
 
-  .nav-btn {
-    width: 42px;
-    height: 42px;
+/* Mobile */
+@media (max-width: 768px) {
+  .slide {
+    min-width: 100%;
+  }
+
+  .main-heading {
+    font-size: 30px;
+  }
+
+  .controls-row {
+    flex-direction: column;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .imagine-section {
+    padding: 30px 12px;
+  }
+
+  .main-heading {
     font-size: 24px;
   }
 
+  .sub-text {
+    font-size: 13px;
+  }
+
+  .slide img {
+    height: 220px;
+  }
+
   .journey-btn {
-    padding: 14px 32px;
-    font-size: 1.05rem;
+    font-size: 14px;
+    padding: 10px 16px;
   }
 }
+
 </style>

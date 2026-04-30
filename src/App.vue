@@ -1,22 +1,23 @@
 <script setup lang="ts">
-import Home from '@/components/Home.vue';
 import Hero from './components/Hero.vue';
 import Home_Section from './components/Home_Section.vue';
 import Home_Sectiontwo from './components/Home_Sectiontwo.vue';
 import Home_Section3 from './components/Home_Section3.vue';
 import Home_sectionfour from './components/Home_sectionfour.vue';
-import End from './components/End.vue';
+import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
 </script>
+
 
 <template>
   <main>
-     <Home/>
+      <Header></Header>
      <Hero/>
      <Home_Section/>
      <Home_Sectiontwo/>
      <Home_Section3/>
      <Home_sectionfour/>
-     <End/>
+     <Footer></Footer>
   </main>
 </template>
 
