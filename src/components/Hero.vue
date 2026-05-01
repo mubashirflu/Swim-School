@@ -217,7 +217,7 @@ body {
   }
 
   .hero-title {
-    margin-top:100px;
+    margin-top:40px;
     font-size: 30px;
   }
 
