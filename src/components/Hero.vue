@@ -42,12 +42,20 @@
 </script>
 
 <style scoped>
+/* ================= GLOBAL RESET (IMPORTANT) ================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
 /* ================= HERO ================= */
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 650px;
   overflow: hidden;
   color: white;
   font-family: "DM Sans", sans-serif;
@@ -67,19 +75,23 @@
 .hero-content {
   position: relative;
   z-index: 2;
+
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 
   height: 100%;
+
   display: flex;
   flex-direction: column;
+
+  /* ✅ PERFECT VERTICAL CENTER */
   justify-content: center;
 
-  padding-top: 50px;
-  padding-bottom: 40px;
+  align-items: flex-start;
 }
 
+/* ================= TITLE ================= */
 .hero-title {
   font-size: clamp(34px, 5vw, 56px);
   line-height: 1.1;
@@ -88,6 +100,7 @@
   max-width: 820px;
 }
 
+/* ================= DESCRIPTION ================= */
 .hero-description ul {
   list-style: none;
   padding: 0;
@@ -119,7 +132,7 @@
 
 .btn-primary,
 .btn-secondary {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   padding: 15px 26px;
   border-radius: 38px;
   font-weight: 600;
@@ -129,6 +142,7 @@
   white-space: nowrap;
 }
 
+/* PRIMARY BUTTON */
 .btn-primary {
   background: #4FAFCF;
   color: white;
@@ -140,6 +154,7 @@
   transform: translateY(-3px);
 }
 
+/* SECONDARY BUTTON */
 .btn-secondary {
   background: transparent;
   color: white;
@@ -155,7 +170,7 @@
 .floating-card {
   position: absolute;
   right: 6%;
-  bottom: 18%;
+  bottom: 15%;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(12px);
   color: white;
@@ -188,23 +203,21 @@
 
 /* ================= RESPONSIVE ================= */
 
-/* Laptop + Tablet: hide floating card */
+/* Tablet */
 @media (max-width: 1024px) {
   .floating-card {
     display: none;
   }
 }
 
-/* Tablet / Mobile */
+/* Mobile */
 @media (max-width: 768px) {
   .hero-content {
-    padding-top: 70px;
-    padding-bottom: 30px;
-    text-align: left;
     align-items: flex-start;
   }
 
   .hero-title {
+    margin-top:100px;
     font-size: 30px;
   }
 
@@ -223,15 +236,10 @@
     font-size: 27px;
   }
 
-  .hero-description li {
-    font-size: 13.5px;
-  }
-
   .btn-primary,
   .btn-secondary {
     padding: 13px 18px;
     font-size: 14px;
   }
 }
-
 </style>
